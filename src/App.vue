@@ -28,7 +28,7 @@
           <div class="card-body">
             <h5 class="card-title">{{filme.titulo}}</h5>
             <p class="card-text">{{filme.desc}}</p>
-            <p class="card-text">R$ {{filme.valor}}</p>
+            <p class="card-text">{{filme.valor | formatarPreco("R$")}}</p>
             <a href="#" class="btn btn-primary">Alugar</a>
           </div>
         </div>
