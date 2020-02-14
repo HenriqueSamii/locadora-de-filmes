@@ -27,7 +27,8 @@
           <img v-bind:src="filme.imagem" class="card-img-top" alt="imagem filme">
           <div class="card-body">
             <h5 class="card-title">{{filme.titulo}}</h5>
-            <p class="card-text">{{filme.desc}}</p>
+            <!-- <p class="card-text">{{filme.desc}}</p> -->
+            <p class="card-text" v-html="filme.desc"></p>
             <p class="card-text">{{filme.valor | formatarPreco("R$")}}</p>
             <a href="#" class="btn btn-primary">Alugar</a>
           </div>
@@ -48,7 +49,7 @@ export default {
       horas: new Date().getHours,
       orc_image:"",
       filmes:[
-        {id: 1, titulo: "Vingadores", desc: "Um filme de heróis", valor: 25, imagem: "https://streetfighter.com/wp-content/uploads/2018/03/sf30-boxart-1.png"},
+        {id: 1, titulo: "Vingadores", desc: "Um <b>filme</b> de heróis", valor: 25, imagem: "https://streetfighter.com/wp-content/uploads/2018/03/sf30-boxart-1.png"},
         {id: 2, titulo: "Filme 1", desc: "Um filme tutu", valor: 15, imagem: "https://img.estadao.com.br/fotos/crop/600x400/resources/jpg/5/5/1453287677855.jpg"},
         {id: 3, titulo: "Movie 2", desc: "Um filme de gringos", valor: 40, imagem: "https://moraremportugal.com/wp-content/uploads/2018/06/Bigode-no-Mundial-foto.jpg"},
         {id: 4, titulo: "Oas", desc: "Um filme de filme", valor: 6, imagem: "https://img.freepik.com/vetores-gratis/3d-ilustracao-realistica-do-clapperboard-ou-do-badalo-do-filme-aberto-isolado-no-fundo_1441-1783.jpg?size=338&ext=jpg"}
