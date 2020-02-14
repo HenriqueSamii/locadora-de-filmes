@@ -53,7 +53,8 @@ export default {
         {id: 2, titulo: "Filme 1", desc: "Um filme tutu", valor: 15, imagem: "https://img.estadao.com.br/fotos/crop/600x400/resources/jpg/5/5/1453287677855.jpg"},
         {id: 3, titulo: "Movie 2", desc: "Um filme de gringos", valor: 40, imagem: "https://moraremportugal.com/wp-content/uploads/2018/06/Bigode-no-Mundial-foto.jpg"},
         {id: 4, titulo: "Oas", desc: "Um filme de filme", valor: 6, imagem: "https://img.freepik.com/vetores-gratis/3d-ilustracao-realistica-do-clapperboard-ou-do-badalo-do-filme-aberto-isolado-no-fundo_1441-1783.jpg?size=338&ext=jpg"}
-      ]
+      ],
+      carrinho:[]
     }
   }
 }
