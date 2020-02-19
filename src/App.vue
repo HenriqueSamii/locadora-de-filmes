@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col">
           <h2>Filmes Encotrados</h2>
-          <button type="button" class="btn btn-primary btn-lg" >Carrinho {{quantidadeItensCarrinho}}</button>
+          <button @click="mostrarCarrinho" type="button" class="btn btn-primary btn-lg" >Carrinho {{quantidadeItensCarrinho}}</button>
         </div>
       </div>
       <!-- <div class="col-3">
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div> -->
-      <div class="card-columns">
+      <div v-if="mostrarFilmes" class="card-columns">
         <div class="card" v-bind:key="filme.id" v-for="filme in filmes">
           <img v-bind:src="filme.imagem" class="card-img-top" alt="imagem filme">
           <div class="card-body">
@@ -35,6 +35,9 @@
             <a href="#" v-else class="btn btn-primary disabled">Alugar</a>
           </div>
         </div>
+      </div>
+      <div v-else>
+        <h2>Carrinho</h2>
       </div>
     </div>
   </div>
@@ -56,7 +59,8 @@ export default {
         {id: 3, titulo: "Movie 2", desc: "Um filme de gringos", valor: 40, estoqueDesponivel: 4, imagem: "https://moraremportugal.com/wp-content/uploads/2018/06/Bigode-no-Mundial-foto.jpg"},
         {id: 4, titulo: "Oas", desc: "Um filme de filme", valor: 6, estoqueDesponivel: 8, imagem: "https://img.freepik.com/vetores-gratis/3d-ilustracao-realistica-do-clapperboard-ou-do-badalo-do-filme-aberto-isolado-no-fundo_1441-1783.jpg?size=338&ext=jpg"}
       ],
-      carrinho:[]
+      carrinho:[],
+      mostrarFilmes: true
     }
   },
   methods:{
@@ -68,12 +72,16 @@ export default {
           //console.log( this.filmes[i].estoqueDesponivel );
         }
       }
+    },
+    mostrarCarrinho: function () {
+      this.mostrarFilmes=!this.mostrarFilmes;
     }
   },
   computed:{
     quantidadeItensCarrinho: function () {
       return this.carrinho.length;
     }
+    
   }
 }
 </script>
