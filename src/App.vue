@@ -9,7 +9,11 @@
       <div class="row">
         <div class="col">
           <h2>Filmes Encotrados</h2>
-          <button @click="mostrarCarrinho" type="button" class="btn btn-primary btn-lg" >Carrinho {{quantidadeItensCarrinho}}</button>
+          <button
+            @click="mostrarCarrinho"
+            type="button"
+            class="btn btn-primary btn-lg"
+          >Carrinho {{quantidadeItensCarrinho}}</button>
         </div>
       </div>
       <!-- <div class="col-3">
@@ -22,68 +26,109 @@
             <a href="#" class="btn btn-primary">Alugar</a>
           </div>
         </div>
-      </div> -->
+      </div>-->
       <div v-if="mostrarFilmes" class="card-columns">
         <div class="card" v-bind:key="filme.id" v-for="filme in filmes">
-          <img v-bind:src="filme.imagem" class="card-img-top" alt="imagem filme">
+          <img v-bind:src="filme.imagem" class="card-img-top" alt="imagem filme" />
           <div class="card-body">
             <h5 class="card-title">{{filme.titulo}}</h5>
             <!-- <p class="card-text">{{filme.desc}}</p> -->
             <p class="card-text" v-html="filme.desc"></p>
             <p class="card-text">{{filme.valor | formatarPreco("R$")}}</p>
-            <a href="#" v-if="filme.estoqueDesponivel > 0"  @click="adicionarAoCarrinho(filme)" class="btn btn-primary">Alugar</a>
+            <a
+              href="#"
+              v-if="filme.estoqueDesponivel > 0"
+              @click="adicionarAoCarrinho(filme)"
+              class="btn btn-primary"
+            >Alugar</a>
             <a href="#" v-else class="btn btn-primary disabled">Alugar</a>
           </div>
         </div>
       </div>
       <div v-else>
-        <h2>Carrinho</h2>
+        <Carrinho />
+        <!-- <h2>Carrinho</h2> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
+import Carrinho from "./components/Carrinho.vue";
 
 export default {
-  name: 'App',
-  data: function(){
-    return{
+  name: "App",
+  components: {
+    Carrinho
+  },
+  data: function() {
+    return {
       title: "Bem vindo a Locadora de Filmes",
       horas: new Date().getHours,
-      orc_image:"",
-      filmes:[
-        {id: 1, titulo: "Vingadores", desc: "Um <b>filme</b> de heróis", valor: 25, estoqueDesponivel: 4, imagem: "https://streetfighter.com/wp-content/uploads/2018/03/sf30-boxart-1.png"},
-        {id: 2, titulo: "Filme 1", desc: "Um filme tutu", valor: 15, estoqueDesponivel: 2, imagem: "https://img.estadao.com.br/fotos/crop/600x400/resources/jpg/5/5/1453287677855.jpg"},
-        {id: 3, titulo: "Movie 2", desc: "Um filme de gringos", valor: 40, estoqueDesponivel: 4, imagem: "https://moraremportugal.com/wp-content/uploads/2018/06/Bigode-no-Mundial-foto.jpg"},
-        {id: 4, titulo: "Oas", desc: "Um filme de filme", valor: 6, estoqueDesponivel: 8, imagem: "https://img.freepik.com/vetores-gratis/3d-ilustracao-realistica-do-clapperboard-ou-do-badalo-do-filme-aberto-isolado-no-fundo_1441-1783.jpg?size=338&ext=jpg"}
+      orc_image: "",
+      filmes: [
+        {
+          id: 1,
+          titulo: "Vingadores",
+          desc: "Um <b>filme</b> de heróis",
+          valor: 25,
+          estoqueDesponivel: 4,
+          imagem:
+            "https://streetfighter.com/wp-content/uploads/2018/03/sf30-boxart-1.png"
+        },
+        {
+          id: 2,
+          titulo: "Filme 1",
+          desc: "Um filme tutu",
+          valor: 15,
+          estoqueDesponivel: 2,
+          imagem:
+            "https://img.estadao.com.br/fotos/crop/600x400/resources/jpg/5/5/1453287677855.jpg"
+        },
+        {
+          id: 3,
+          titulo: "Movie 2",
+          desc: "Um filme de gringos",
+          valor: 40,
+          estoqueDesponivel: 4,
+          imagem:
+            "https://moraremportugal.com/wp-content/uploads/2018/06/Bigode-no-Mundial-foto.jpg"
+        },
+        {
+          id: 4,
+          titulo: "Oas",
+          desc: "Um filme de filme",
+          valor: 6,
+          estoqueDesponivel: 8,
+          imagem:
+            "https://img.freepik.com/vetores-gratis/3d-ilustracao-realistica-do-clapperboard-ou-do-badalo-do-filme-aberto-isolado-no-fundo_1441-1783.jpg?size=338&ext=jpg"
+        }
       ],
-      carrinho:[],
+      carrinho: [],
       mostrarFilmes: true
-    }
+    };
   },
-  methods:{
-    adicionarAoCarrinho: function(filme){
+  methods: {
+    adicionarAoCarrinho: function(filme) {
       this.carrinho.push(filme.id);
       for (let i in this.filmes) {
         if (this.filmes[i].id == filme.id) {
-          this.filmes[i].estoqueDesponivel = this.filmes[i].estoqueDesponivel - 1;
+          this.filmes[i].estoqueDesponivel =
+            this.filmes[i].estoqueDesponivel - 1;
           //console.log( this.filmes[i].estoqueDesponivel );
         }
       }
     },
-    mostrarCarrinho: function () {
-      this.mostrarFilmes=!this.mostrarFilmes;
+    mostrarCarrinho: function() {
+      this.mostrarFilmes = !this.mostrarFilmes;
     }
   },
-  computed:{
-    quantidadeItensCarrinho: function () {
+  computed: {
+    quantidadeItensCarrinho: function() {
       return this.carrinho.length;
     }
-    
   }
-}
+};
 </script>
 
 <style>
@@ -96,16 +141,16 @@ export default {
   margin-top: 60px;
 }
 
-#abreto{
-  color: blue
+#abreto {
+  color: blue;
 }
-#proximo-fechar{
-  color: orange
+#proximo-fechar {
+  color: orange;
 }
-#fechado{
-  color: red
+#fechado {
+  color: red;
 }
-.card{
-  display:block
+.card {
+  display: block;
 }
 </style>
