@@ -90,7 +90,7 @@
             Cidade: {{pedido.cidade}}
             Estado: {{pedido.estado}}
             CEP: {{pedido.cep}}
-            Pago Na Entrega: {{pedido.pagoNaEntrega}}
+            Pago Na Entrega: {{pagoNaEntregaFuncao()}}
             Entrega: {{pedido.entrega}}
         </pre>
     </div>
@@ -122,6 +122,14 @@ export default {
         ES: "Espirito Santo"
       }
     };
+  },
+  methods: {
+    pagoNaEntregaFuncao : function() {
+      if (this.pedido.pagoNaEntrega == false) {
+        return "Não"
+      }
+      return "Sim"
+    }
   }
 };
 </script>

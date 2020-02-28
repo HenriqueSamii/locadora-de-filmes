@@ -34,7 +34,22 @@
             <h5 class="card-title">{{filme.titulo}}</h5>
             <!-- <p class="card-text">{{filme.desc}}</p> -->
             <p class="card-text" v-html="filme.desc"></p>
+            <span class="mensagem-estoque" v-if="filme.estoqueDesponivel <= 0">
+              Indisponivel
+            </span>
+            <span class="mensagem-estoque" v-else-if="filme.estoqueDesponivel < 5">
+              Apenas {{filme.estoqueDesponivel}} itens em estoque
+            </span>
+            <span class="mensagem-estoque" v-else>
+              Aluge agora!
+            </span>
             <p class="card-text">{{filme.valor | formatarPreco("R$")}}</p>
+            <div class="avaliacao">
+              <span v-for="n in 5" :key = "n"
+              v-bind:class="{'avaliacao-active':checharAvaliacao(n,filme)}">
+                <img src="./assets/etapa4ffcb_img038.jpg" alt="estrela vazia" height="20">
+              </span>
+            </div>
             <a
               href="#"
               v-if="filme.estoqueDesponivel > 0"
@@ -73,6 +88,7 @@ export default {
           desc: "Um <b>filme</b> de heróis",
           valor: 25,
           estoqueDesponivel: 4,
+          avaliacao:2,
           imagem:
             "https://streetfighter.com/wp-content/uploads/2018/03/sf30-boxart-1.png"
         },
@@ -82,6 +98,7 @@ export default {
           desc: "Um filme tutu",
           valor: 15,
           estoqueDesponivel: 2,
+          avaliacao:4,
           imagem:
             "https://img.estadao.com.br/fotos/crop/600x400/resources/jpg/5/5/1453287677855.jpg"
         },
@@ -91,6 +108,7 @@ export default {
           desc: "Um filme de gringos",
           valor: 40,
           estoqueDesponivel: 4,
+          avaliacao:5,
           imagem:
             "https://moraremportugal.com/wp-content/uploads/2018/06/Bigode-no-Mundial-foto.jpg"
         },
@@ -100,6 +118,7 @@ export default {
           desc: "Um filme de filme",
           valor: 6,
           estoqueDesponivel: 8,
+          avaliacao:3,
           imagem:
             "https://img.freepik.com/vetores-gratis/3d-ilustracao-realistica-do-clapperboard-ou-do-badalo-do-filme-aberto-isolado-no-fundo_1441-1783.jpg?size=338&ext=jpg"
         }
@@ -121,6 +140,9 @@ export default {
     },
     mostrarCarrinho: function() {
       this.mostrarFilmes = !this.mostrarFilmes;
+    },
+    checharAvaliacao: function(n, filme){
+      return (filme.avaliacao - n >= 0);
     }
   },
   computed: {
@@ -132,6 +154,14 @@ export default {
 </script>
 
 <style>
+span.avaliacao-active{
+  background-image: url("./assets/etapa4ffcb_img039.jpg");
+  background-repeat: no-repeat;
+  background-position-x: 1px;
+  background-position-y: 2px;
+  background-size: 20px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
