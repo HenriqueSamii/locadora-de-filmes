@@ -30,51 +30,96 @@
       <!-- Endereco -->
       <div class="form-group">
         <label for="endereco">Endereço</label>
-        <input type="text" class="form-control" id="endereco" placeholder="Desgite o seu endereço" v-model.trim.lazy="pedido.endereco" />
+        <input
+          type="text"
+          class="form-control"
+          id="endereco"
+          placeholder="Desgite o seu endereço"
+          v-model.trim.lazy="pedido.endereco"
+        />
       </div>
 
       <!-- Cidade -->
       <div class="form-group">
         <label for="cidade">Cidade</label>
-        <input type="text" 
-        class="form-control" 
-        id="cidade" 
-        placeholder="Desgite a sua cidade"
-        v-model.trim.lazy="pedido.cidade" />
+        <input
+          type="text"
+          class="form-control"
+          id="cidade"
+          placeholder="Desgite a sua cidade"
+          v-model.trim.lazy="pedido.cidade"
+        />
       </div>
 
       <!-- Estado DropDown -->
       <div class="form-group">
         <label for="estado">Estado</label>
-        <select class="form-control" id="estado" v-model.trim.lazy="pedido.estado">
+        <select
+          class="form-control"
+          id="estado"
+          v-model.trim.lazy="pedido.estado"
+        >
           <option disabled value>Escolha um estado</option>
-          <option v-for="(estado,key) in estados" v-bind:estado="estado" v-bind:key="key">{{estado}}</option>
+          <option
+            v-for="(estado, key) in estados"
+            v-bind:estado="estado"
+            v-bind:key="key"
+            >{{ estado }}</option
+          >
         </select>
       </div>
 
       <!-- Cep -->
       <div class="form-group">
         <label for="cep">CEP</label>
-        <input type="text" class="form-control" id="cep" placeholder="Desgite o seu CEP"
-        v-model.trim.lazy="pedido.cep" />
+        <input
+          type="text"
+          class="form-control"
+          id="cep"
+          placeholder="Desgite o seu CEP"
+          v-model.trim.lazy="pedido.cep"
+        />
       </div>
 
       <!-- Check Box -->
       <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="pagoNaEntrega" v-model.trim.lazy="pedido.pagoNaEntrega" />
-        <label class="form-check-label" for="pagoNaEntrega">Pago na entrega?</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="pagoNaEntrega"
+          v-model.trim.lazy="pedido.pagoNaEntrega"
+        />
+        <label class="form-check-label" for="pagoNaEntrega"
+          >Pago na entrega?</label
+        >
       </div>
 
       <!-- Radio -->
       <div class="custom-radio">
         <label class="radio-inline">
-          <input type="radio" name="optradio" value="Manhã" checked v-model.trim.lazy="pedido.entrega" />Manhã
+          <input
+            type="radio"
+            name="optradio"
+            value="Manhã"
+            checked
+            v-model.trim.lazy="pedido.entrega"
+          />Manhã
         </label>
         <label class="radio-inline">
-          <input type="radio" name="optradio" value="Tarde" v-model.trim.lazy="pedido.entrega" />Tarde
+          <input
+            type="radio"
+            name="optradio"
+            value="Tarde"
+            v-model.trim.lazy="pedido.entrega"
+          />Tarde
         </label>
         <label class="radio-inline">
-          <input type="radio" name="optradio" value="Noite" v-model.trim.lazy="pedido.entrega" />Noite
+          <input
+            type="radio"
+            name="optradio"
+            value="Noite"
+            v-model.trim.lazy="pedido.entrega"
+          />Noite
         </label>
       </div>
 
@@ -84,15 +129,16 @@
 
     <div>
       <pre>
-            Primeiro Nome: {{pedido.primeiroNome}}
-            Ultimo Nome: {{pedido.ultimoNome}}
-            Endereço: {{pedido.endereco}}
-            Cidade: {{pedido.cidade}}
-            Estado: {{pedido.estado}}
-            CEP: {{pedido.cep}}
-            Pago Na Entrega: {{pagoNaEntregaFuncao()}}
-            Entrega: {{pedido.entrega}}
-        </pre>
+            Primeiro Nome: {{ pedido.primeiroNome }}
+            Ultimo Nome: {{ pedido.ultimoNome }}
+            Endereço: {{ pedido.endereco }}
+            Cidade: {{ pedido.cidade }}
+            Estado: {{ pedido.estado }}
+            CEP: {{ pedido.cep }}
+            Pago Na Entrega: {{ pagoNaEntregaFuncao() }}
+            Entrega: {{ pedido.entrega }}
+        </pre
+      >
     </div>
   </div>
 </template>
@@ -106,14 +152,14 @@ export default {
   data() {
     return {
       pedido: {
-          primeiroNome:"",
-          ultimoNome:"",
-          endereco:"",
-          cidade:"",
-          estado:"",
-          cep:"",
-          pagoNaEntrega:false,
-          entrega:"Manhã"
+        primeiroNome: "",
+        ultimoNome: "",
+        endereco: "",
+        cidade: "",
+        estado: "",
+        cep: "",
+        pagoNaEntrega: false,
+        entrega: "Manhã"
       },
       estados: {
         RJ: "Rio de Janeiro",
@@ -124,16 +170,12 @@ export default {
     };
   },
   methods: {
-    pagoNaEntregaFuncao : function() {
+    pagoNaEntregaFuncao: function() {
       if (this.pedido.pagoNaEntrega == false) {
-        return "Não"
+        return "Não";
       }
-      return "Sim"
+      return "Sim";
     }
   }
 };
 </script>
-
-
-
-
