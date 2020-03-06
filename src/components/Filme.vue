@@ -13,11 +13,10 @@
         <p>{{ filme.valor | formatarPreco("R$") }}</p>
         <router-link
           tag="button"
-          :to="{ name: 'editar-filme' }"
-        >
-          Editar</router-link
-        >
+          :to="{ name: 'editar-filme' }" >
+          Editar </router-link>
       </div>
+      <router-view />
     </div>
   </div>
 </template>
